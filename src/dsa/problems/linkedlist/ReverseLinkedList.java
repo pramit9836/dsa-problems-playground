@@ -15,16 +15,28 @@ public class ReverseLinkedList {
 
         Node prev = head;
         Node current = head.next;
-        Node nextNode = current.next;
+        Node nextNode;
         while (current != null) {
             nextNode = current.next;
             current.next = prev;
             prev = current;
             current = nextNode;
-
         }
         head.next = null;
         head = prev;
         return head;
+    }
+
+
+    public static Node reverseLinkedListRecursively(Node head) {
+        if (head == null || head.next ==null) {
+            return head;
+        }
+
+        Node newHead = reverseLinkedListRecursively(head.next);
+
+        head.next.next = head;
+        head.next = null;
+        return newHead;
     }
 }
